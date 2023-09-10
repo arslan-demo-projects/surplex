@@ -1,6 +1,7 @@
-
 ##The scraper scripts have been developed using python 3 
+
 ##Scrape auctions from [Surplex Website](https://www.surplex.com/es/a.html) and store the scraped auction results into a MYSQL database.
+
 ```
 *** Step-1 ***
 
@@ -8,6 +9,7 @@ Script has developed using python3 or latest version. You can
 download and install IDE Pycharm Community Edition  (used for 
 managing python projects and scripts).
 ```
+
 ### Download Pycharm from [Jetbrains](https://www.jetbrains.com/pycharm/download/) Official Website
 
 ###You can also get help from [Here](https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/?ref=lbp) to know how to create virtual environment at linux or windows
@@ -34,6 +36,7 @@ command line interface using pip:-
 `pip install cryptography==38.0.4`
 
 ##OR 
+
 You can install all requirements using requirements.txt.
 Please write this command in terminal:
 ````

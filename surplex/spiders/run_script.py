@@ -11,4 +11,3 @@ def run_spider_via_python_script():
 
 if __name__ == "__main__":
     run_spider_via_python_script()
-
