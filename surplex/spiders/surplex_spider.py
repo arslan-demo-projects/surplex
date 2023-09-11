@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import base64
+from datetime import datetime
 
 from scrapy import Request
 from scrapy import Spider
@@ -11,8 +12,8 @@ from utils import *
 class SurplexSpider(Spider):
     name = "surplex_spider"
     base_url = 'https://www.surplex.com/'
-    file_path = '../output/surplex_auctions.csv'
     auction_categories_url = 'https://www.surplex.com/es/a.html'
+    file_path = f'../output/surplex_auctions_{datetime.now().strftime("%d%b%y")}.csv'
 
     start_urls = [
         auction_categories_url,
