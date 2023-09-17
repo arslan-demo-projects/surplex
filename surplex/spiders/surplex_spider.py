@@ -126,7 +126,8 @@ class SurplexSpider(Spider):
         item['category'] = self.get_meta_value(response, "bc:category")
         item['type'] = self.get_meta_value(response, "bc:type")
         item['start_date'] = clean_date(self.get_meta_value(response, "bc:start"))
-        item['end_date'] = clean_date(self.get_meta_value(response, "bc:end"))
+        # item['end_date'] = clean_date(self.get_meta_value(response, "bc:end"))
+        item['end_date'] = clean_date(self.get_end_date(response))
         item['followers'] = self.get_meta_value(response, "bc:watchlist")
         item['total_bids'] = self.get_meta_value(response, "bc:bidamount")
         item['current_bid'] = self.get_meta_value(response, "bc:price")
@@ -225,3 +226,25 @@ class SurplexSpider(Spider):
 
     def get_decoded_url(self, encoded_url):
         return str(base64.b64decode(encoded_url), 'utf-8')
+
+    def get_end_date(self, response):
+        end_t = clean(response.css('.js-machine--endtime b::text').get()).replace('/', '-')
+
+        if 'd' in end_t or 'h' in end_t or 'm' in end_t:
+            end_t = clean(response.css('.countdownHelper::text').get()).replace('/', '-')
+
+        # try:
+        #     dt_o = datetime.strptime(end_t, '%m-%d-%y %H:%M')
+        #     return dt_o.strftime("%Y-%m-%d %H:%M")
+        # except Exception as err:
+        #     self.logger.info(err)
+
+        try:
+            d, t = end_t.split()
+            raw = d.split('-')
+
+            return f"20{raw[-1]}-{raw[1]}-{raw[0]} {t}"
+        except Exception as err:
+            self.logger.info(err)
+
+        return clean_date(self.get_meta_value(response, "bc:end"))

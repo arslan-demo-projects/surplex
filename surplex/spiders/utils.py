@@ -6,7 +6,7 @@ def clean(text):
     if not text:
         return ''
     text = unescape(text or '')
-    for c in ['\r\n', '\n\r', u'\n', u'\r', u'\t', u'\xa0', '...']:
+    for c in ['\r\n', '\n\r', u'\n', u'\r', u'\t', u'\xa0', '...', '\\xa0']:
         text = text.replace(c, ' ')
     return re.sub(' +', ' ', text).strip()
 
